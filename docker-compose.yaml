@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'mydatabase'
+      MYSQL_USER: 'myuser'
+      MYSQL_PASSWORD: 'mypassword'
+      MYSQL_ROOT_PASSWORD: 'rootpassword'
+    ports:
+      - "1521:1521"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
